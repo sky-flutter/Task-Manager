@@ -35,6 +35,7 @@ dependencies:
   flutter_slidable: ^0.5.5
   intl: ^0.16.1
   date_utils: ^0.1.0+3
+  awesome_speed_dial: ^0.0.1
 
 dev_dependencies:
   flutter_test:

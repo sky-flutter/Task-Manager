@@ -15,6 +15,7 @@ class _MyTaskState extends State<MyTask> with SingleTickerProviderStateMixin {
   PageController pageController;
   var todayPage = TodayPage();
   var monthPage = MonthPage();
+  int selectedTaskValue = 3;
 
   @override
   void initState() {
@@ -31,7 +32,48 @@ class _MyTaskState extends State<MyTask> with SingleTickerProviderStateMixin {
         title: "Work List",
         leading: Container(),
         actions: [
-          IconButton(icon: Icon(Icons.format_list_numbered), onPressed: () {})
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: Text(
+                    "InCompleted Tasks",
+                    style: CustomTextStyle.styleMedium,
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  child: Text(
+                    "Completed Tasks",
+                    style: CustomTextStyle.styleMedium,
+                  ),
+                  value: 2,
+                ),
+                PopupMenuItem(
+                  child: Text(
+                    "All Tasks",
+                    style: CustomTextStyle.styleMedium,
+                  ),
+                  value: 3,
+                ),
+              ];
+            },
+            onSelected: (value) {
+              setState(() {
+                selectedTaskValue = value;
+              });
+            },
+            initialValue: selectedTaskValue,
+            offset: Offset(
+                0,
+                selectedTaskValue == 3
+                    ? 300
+                    : selectedTaskValue == 2 ? 200 : 100),
+            elevation: 4,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+            icon: Icon(Icons.format_list_numbered),
+          )
         ],
         bottomMenu: PreferredSize(
           preferredSize: Size(double.infinity, 96),
@@ -44,7 +86,7 @@ class _MyTaskState extends State<MyTask> with SingleTickerProviderStateMixin {
                       curve: Curves.easeInOut);
                 },
                 controller: tabController,
-                labelStyle: CustomTextStyle.styleMedium.copyWith(fontSize: 14),
+                labelStyle: CustomTextStyle.styleMedium.copyWith(fontSize: 18),
                 indicatorColor: Colors.white,
                 indicatorSize: TabBarIndicatorSize.label,
                 unselectedLabelColor: Colors.white38,
@@ -55,7 +97,7 @@ class _MyTaskState extends State<MyTask> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   Tab(
-                    child: Text("Month"),
+                    child: Text("Month",),
                   ),
                 ]),
           ),

@@ -10,7 +10,7 @@ class TaskList extends StatelessWidget {
       color: Colors.grey.shade100,
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
-        padding: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.only(bottom: 72),
         itemBuilder: (context, index) {
           if (index % 6 == 0) {
             return headerItem();

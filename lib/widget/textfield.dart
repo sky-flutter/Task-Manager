@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
   String hint = "";
   IconButton icon;
   Key key;
+  int minLines;
 
   CustomTextField(
       {this.key,
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
       this.textInputType = TextInputType.text,
       this.textEditingController,
       this.icon,
+      this.minLines = 1,
       this.isObscureText = false});
 
   @override
@@ -35,6 +37,8 @@ class CustomTextField extends StatelessWidget {
           TextField(
             controller: textEditingController,
             keyboardType: textInputType,
+            minLines: minLines,
+            maxLines: minLines,
             obscureText: isObscureText,
             style: CustomTextStyle.styleMedium,
             decoration: InputDecoration(
@@ -42,7 +46,8 @@ class CustomTextField extends StatelessWidget {
               border: border(),
               focusedBorder: border(color: CustomColors.colorBlue),
               hintText: hint,
-              hintStyle: CustomTextStyle.styleMedium.copyWith(fontSize: 12,color: Colors.grey),
+              hintStyle: CustomTextStyle.styleMedium
+                  .copyWith(fontSize: 12, color: Colors.grey),
               suffixIcon: icon,
               enabledBorder: border(),
               alignLabelWithHint: true,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:task_manager/ui/forgot_password.dart';
 import 'package:task_manager/ui/home/home.dart';
 import 'package:task_manager/utils/style.dart';
 import 'package:task_manager/widget/button.dart';
+import 'package:task_manager/widget/decoration.dart';
 import 'package:task_manager/widget/rounded_corner_page.dart';
 import 'package:task_manager/widget/textfield.dart';
 
@@ -26,13 +26,8 @@ class _LoginState extends State<Login> {
         title: "Login",
         isFirstPage: true,
         child: Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16))),
-            child: SingleChildScrollView(
+          child: RoundedCornerDecoration(
+            SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -69,7 +64,7 @@ class _LoginState extends State<Login> {
                     isObscureText: isPasswordShow,
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Get.to(ForgotPassword());
                     },
                     child: Container(
@@ -81,9 +76,12 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  Button("Login",onPress: (){
-                    Get.off(Home());
-                  },),
+                  Button(
+                    "Login",
+                    onPress: () {
+                      Get.off(Home());
+                    },
+                  ),
                   SizedBox(
                     height: 48,
                   )

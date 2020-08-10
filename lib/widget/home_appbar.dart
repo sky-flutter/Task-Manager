@@ -18,7 +18,7 @@ class HomeAppBar {
       leading: leading,
       title: Text(
         title,
-        style: CustomTextStyle.styleBold.copyWith(color: Colors.white),
+        style: CustomTextStyle.styleBold.copyWith(color: Colors.white,fontSize: 18),
       ),
       centerTitle: true,
       actions: actions,

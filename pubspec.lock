@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
+  awesome_speed_dial:
+    dependency: "direct main"
+    description:
+      name: awesome_speed_dial
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   boolean_selector:
     dependency: transitive
     description:
