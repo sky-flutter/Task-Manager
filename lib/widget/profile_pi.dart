@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-userProfilePic({radius:24}) {
+userProfilePic({radius:24.0}) {
   return CircleAvatar(
     radius: radius,
     backgroundImage: Image.network(
