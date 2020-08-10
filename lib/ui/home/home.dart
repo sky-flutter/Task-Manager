@@ -1,11 +1,13 @@
-import 'package:awesome_speed_dial/awesome_speed_dial.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager/ui/home/fab_menu_option/add_check_list.dart';
 import 'package:task_manager/ui/home/fab_menu_option/add_note.dart';
+import 'package:task_manager/ui/home/fab_menu_option/add_task.dart';
 import 'package:task_manager/ui/home/pages/my_task.dart';
 import 'package:task_manager/ui/home/pages/profile.dart';
 import 'package:task_manager/ui/home/pages/project.dart';
 import 'package:task_manager/ui/home/pages/quick_notes.dart';
+import 'package:task_manager/utils/style.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -85,45 +87,73 @@ class _HomeState extends State<Home> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: AwesomeSpeedDial(
-          colorStartAnimation: Colors.black,
-          colorEndAnimation: Colors.black,
-          fabButtons: [
-            FloatingActionButton(
-              key: Key("btn3"),
-              onPressed: () {},
-              heroTag: "btn3",
-              child: Icon(Icons.add),
-              backgroundColor: Colors.black,
-              tooltip: "Add Task",
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddNote()));
-              },
-              child: FloatingActionButton(
-                key: Key("btn1"),
-                onPressed: null,
-                heroTag: "btn1",
-                backgroundColor: Colors.black,
-                child: Icon(Icons.note_add),
-                tooltip: "Add Quick Note",
-              ),
-            ),
-            FloatingActionButton(
-              key: Key("btn2"),
-              onPressed: () {
-                Get.off(AddNote());
-              },
-              heroTag: "btn2",
-              backgroundColor: Colors.black,
-              child: Icon(Icons.playlist_add_check),
-              tooltip: "Add Check List",
-            )
-          ],
-          animatedIconData: AnimatedIcons.menu_close,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showTaskMenuDialog();
+          },
+          backgroundColor: Colors.black,
+          child: Icon(Icons.add),
         ));
+  }
+
+  showTaskMenuDialog() {
+    var alertDialog = AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      content: Wrap(
+        children: [
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: double.infinity,
+                  child: FlatButton(
+                    child: Text(
+                      "Add Task",
+                      style: CustomTextStyle.styleSemiBold,
+                    ),
+                    onPressed: () {
+                      Get.back();
+                      Get.to(AddTask());
+                    },
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.centerLeft,
+                  child: FlatButton(
+                    child: Text(
+                      "Add Quick Notes",
+                      style: CustomTextStyle.styleSemiBold,
+                    ),
+                    onPressed: () {
+                      Get.back();
+                      Get.to(AddNote());
+                    },
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: double.infinity,
+                  child: FlatButton(
+                    child: Text(
+                      "Add Check List",
+                      style: CustomTextStyle.styleSemiBold,
+                    ),
+                    onPressed: () {
+                      Get.back();
+                      Get.to(AddCheckList());
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+    showDialog(context: context, builder: (context) => alertDialog);
   }
 
   getMenuItem() {
